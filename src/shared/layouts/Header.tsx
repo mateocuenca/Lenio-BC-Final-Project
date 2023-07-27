@@ -1,5 +1,5 @@
+import OutlineFavBtn from "../components/OutlineFavBtn";
 import styles from "./Header.module.css";
-import { AiOutlineStar } from "react-icons/ai";
 
 const Header = () => {
   return (
@@ -13,9 +13,10 @@ const Header = () => {
         <form>
           <input type="text" id="search" name="search" placeholder="Search" />
         </form>
-        <button className={styles["btn-favourite"]}>
+        {/* <button className={styles["btn-favourite"]}>
           <AiOutlineStar />
-        </button>
+        </button> */}
+        <OutlineFavBtn />
       </div>
     </header>
   );

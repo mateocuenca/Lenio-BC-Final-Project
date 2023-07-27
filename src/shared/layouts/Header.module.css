@@ -17,33 +17,6 @@ header div {
   gap: 10px;
 }
 
-/* Favourite button styles */
-
-.btn-favourite {
-  background-color: white;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-favourite svg {
-  width: 20px;
-  height: 20px;
-}
-
-.btn-favourite:hover {
-  background-color: white;
-}
-
-.btn-favourite:focus {
-  background-color: white;
-  outline: none; /* Remove the default focus outline */
-  box-shadow: none; /* Remove any box shadow on focus */
-}
-
 /* Media queries  */
 
 @media (min-width: 768px) {
