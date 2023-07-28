@@ -28,8 +28,8 @@ const Button = styled.button`
   }
 `;
 
-const OutlineFavBtn = () => (
-  <Button>
+const OutlineFavBtn = ({ onClick }) => (
+  <Button onClick={onClick}>
     <AiOutlineStar />
   </Button>
 );

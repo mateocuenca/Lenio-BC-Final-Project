@@ -1,6 +1,6 @@
 //External dependencies
 import styles from "styled-components";
-import { OutlineFavBtn } from "../../../shared/components/OutlineFavBtn";
+import { OutlineFavBtn } from "../../../shared/components/atoms/OutlineFavBtn";
 
 const Card = styles.li`
   list-style: none;
