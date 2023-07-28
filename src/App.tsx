@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//External dependencies
+import { useEffect, useRef } from "react";
+import { useAtom } from "jotai";
+
+//Internal dependencies
+import { Header } from "./shared/layouts/Header/Header";
+import { getAllCharacters } from "./shared/services/characterService";
+import { charactersAtom } from "./shared/state/atoms/charactersAtom";
+import { loadingAtom } from "./shared/state/atoms/loadingAtom";
+import { Main } from "./shared/layouts/Main/Main";
+
+//Stylesheets
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [, setCharacters] = useAtom(charactersAtom);
+  const [, setLoading] = useAtom(loadingAtom);
+  const effectRan = useRef(false);
+
+  useEffect(() => {
+    if (effectRan.current === false) {
+      const fetchData = async () => {
+        const allCharacters = await getAllCharacters();
+        setCharacters(allCharacters);
+        setLoading(false);
+      };
+
+      fetchData();
+      return () => {
+        effectRan.current = true;
+      };
+    }
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="page">
+        <Header />
+        <Main />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

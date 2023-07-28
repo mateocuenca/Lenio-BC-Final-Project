@@ -1,0 +1,29 @@
+/* Header styles */
+
+.logo-marvel {
+  max-width: 100px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Media queries  */
+
+@media (min-width: 768px) {
+  /* Header styles */
+  header {
+    flex-direction: row;
+    gap: 390px;
+  }
+}
