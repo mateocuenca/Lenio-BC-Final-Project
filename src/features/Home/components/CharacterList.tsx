@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import styles from "styled-components";
 
 //Internal dependencies
-import { charactersAtom } from "../../../shared/state/atoms/charactersAtom";
+import { charactersAtom } from "../../../shared/state/atoms/charactersAtoms";
 import { CharacterCard } from "./CharacterCard";
 
 const Grid = styles.ul`

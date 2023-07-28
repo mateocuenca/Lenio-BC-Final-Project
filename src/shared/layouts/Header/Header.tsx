@@ -1,5 +1,5 @@
 //Internal dependencies
-import { OutlineFavBtn } from "../../components/OutlineFavBtn";
+import { OutlineFavBtn } from "../../components/atoms/OutlineFavBtn";
 
 //Stylesheets
 import styles from "./Header.module.css";
@@ -16,7 +16,7 @@ const Header = () => {
         <form>
           <input type="text" id="search" name="search" placeholder="Search" />
         </form>
-        <OutlineFavBtn />
+        <OutlineFavBtn onClick={} />
       </div>
     </header>
   );
