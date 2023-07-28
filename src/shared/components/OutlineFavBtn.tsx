@@ -1,3 +1,4 @@
+//External dependencies
 import { AiOutlineStar } from "react-icons/ai";
 import { styled } from "styled-components";
 
@@ -9,6 +10,7 @@ const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 
   &:hover {
     background-color: white;
@@ -26,12 +28,10 @@ const Button = styled.button`
   }
 `;
 
-const OutlineFavBtn = () => {
-  return (
-    <Button>
-      <AiOutlineStar />
-    </Button>
-  );
-};
+const OutlineFavBtn = () => (
+  <Button>
+    <AiOutlineStar />
+  </Button>
+);
 
-export default OutlineFavBtn;
+export { OutlineFavBtn };

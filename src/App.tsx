@@ -1,39 +1,42 @@
-import { useEffect } from "react";
-import "./App.css";
-import Header from "./shared/layouts/Header";
-import { atom, useAtom } from "jotai";
-import { getAllCharacters } from "./shared/services/characterService";
+//External dependencies
+import { useEffect, useRef } from "react";
+import { useAtom } from "jotai";
 
-const charactersAtom = atom<any[]>([]);
+//Internal dependencies
+import { Header } from "./shared/layouts/Header/Header";
+import { getAllCharacters } from "./shared/services/characterService";
+import { charactersAtom } from "./shared/state/atoms/charactersAtom";
+import { loadingAtom } from "./shared/state/atoms/loadingAtom";
+import { Main } from "./shared/layouts/Main/Main";
+
+//Stylesheets
+import "./App.css";
 
 function App() {
-  const [characters, setCharacters] = useAtom(charactersAtom);
-  const hasCharacters = characters.length > 0;
+  const [, setCharacters] = useAtom(charactersAtom);
+  const [, setLoading] = useAtom(loadingAtom);
+  const effectRan = useRef(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const allCharacters = await getAllCharacters();
-      setCharacters(allCharacters);
-    };
+    if (effectRan.current === false) {
+      const fetchData = async () => {
+        const allCharacters = await getAllCharacters();
+        setCharacters(allCharacters);
+        setLoading(false);
+      };
 
-    fetchData();
-  }, [setCharacters]);
+      fetchData();
+      return () => {
+        effectRan.current = true;
+      };
+    }
+  }, []);
 
   return (
     <>
       <div className="page">
         <Header />
-        <main>
-          {hasCharacters ? (
-            <ul>
-              {characters.map((character) => (
-                <li key={character.id}>{character.name}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </main>
+        <Main />
       </div>
     </>
   );

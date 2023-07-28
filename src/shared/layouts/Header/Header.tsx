@@ -1,4 +1,7 @@
-import OutlineFavBtn from "../components/OutlineFavBtn";
+//Internal dependencies
+import { OutlineFavBtn } from "../../components/OutlineFavBtn";
+
+//Stylesheets
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -13,13 +16,10 @@ const Header = () => {
         <form>
           <input type="text" id="search" name="search" placeholder="Search" />
         </form>
-        {/* <button className={styles["btn-favourite"]}>
-          <AiOutlineStar />
-        </button> */}
         <OutlineFavBtn />
       </div>
     </header>
   );
 };
 
-export default Header;
+export { Header };

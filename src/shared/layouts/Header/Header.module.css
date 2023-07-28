@@ -9,6 +9,7 @@ header {
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  margin-bottom: 30px;
 }
 
 header div {
@@ -23,6 +24,6 @@ header div {
   /* Header styles */
   header {
     flex-direction: row;
-    gap: 100px;
+    gap: 390px;
   }
 }

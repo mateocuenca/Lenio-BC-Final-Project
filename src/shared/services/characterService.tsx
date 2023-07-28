@@ -1,7 +1,7 @@
 const getCharacters = async (offset = 0) => {
   const ts: string = "1";
-  const hash: string = "17126bccf69ca89a5f91cb99b3bcebcc";
-  const apikey: string = "4bfad9e9b0923eae919d93c4bb53d6dd";
+  const hash: string = "62e7d48094c147098933d40c09e39054";
+  const apikey: string = "68bad928443e1f6ff994342b06e6b887";
   const limit: string = "100";
 
   const params = new URLSearchParams({
@@ -40,13 +40,15 @@ const getAllCharacters = async () => {
 
     // Concatenate and filter properties from all responses
     const allCharacters = allResponses.reduce((acc, response) => {
-      const filteredCharacters = response.data.results.map((character) => ({
-        id: character.id,
-        name: character.name,
-        description: character.description,
-        thumbnail: character.thumbnail,
-        comics: character.comics,
-      }));
+      const filteredCharacters = response.data.results.map(
+        (character: any) => ({
+          id: character.id,
+          name: character.name,
+          description: character.description,
+          thumbnail: character.thumbnail,
+          comics: character.comics,
+        })
+      );
 
       return [...acc, ...filteredCharacters];
     }, []);
