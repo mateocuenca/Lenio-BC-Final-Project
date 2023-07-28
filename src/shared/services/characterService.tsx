@@ -16,25 +16,49 @@ const getCharacters = async (offset = 0) => {
 
   const response = await fetch(URL)
     .then((response) => response.json())
-    .catch((error) => console.log("ERROR : ", error));
+    .catch((error) => console.log("ERROR: ", error));
   return response;
 };
 
 const getAllCharacters = async () => {
-  let offset = 0;
-  let allCharacters: any[] = [];
-  let hasMoreResults = true;
+  const limit = 100; // The maximum number of characters that can be fetched in a single request
+  const {
+    data: { total },
+  } = await getCharacters(); // Fetch the total count of characters
 
-  while (hasMoreResults) {
-    const response = await getCharacters(offset); // Get the complete response
-    const { total, results } = response.data; // Extract the 'total' and 'results' from the response
+  // Calculate the number of requests needed to fetch all characters
+  const numRequests = Math.ceil(total / limit);
 
-    allCharacters = [...allCharacters, ...results];
-    offset += 100;
-    hasMoreResults = offset < total;
+  // Create an array of request promises
+  const requestPromises = Array.from({ length: numRequests }, (_, index) =>
+    getCharacters(index * limit)
+  );
+
+  try {
+    // Use Promise.all to make all requests simultaneously
+    const allResponses = await Promise.all(requestPromises);
+
+    // Concatenate and filter properties from all responses
+    const allCharacters = allResponses.reduce((acc, response) => {
+      const filteredCharacters = response.data.results.map((character) => ({
+        id: character.id,
+        name: character.name,
+        description: character.description,
+        thumbnail: character.thumbnail,
+        comics: character.comics,
+      }));
+
+      return [...acc, ...filteredCharacters];
+    }, []);
+
+    // Randomly sort the characters
+    allCharacters.sort(() => Math.random() - 0.5);
+
+    return allCharacters;
+  } catch (error) {
+    console.log("Error fetching characters: ", error);
+    return [];
   }
-
-  return allCharacters;
 };
 
 export { getAllCharacters };

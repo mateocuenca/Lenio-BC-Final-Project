@@ -8,6 +8,7 @@ const charactersAtom = atom<any[]>([]);
 
 function App() {
   const [characters, setCharacters] = useAtom(charactersAtom);
+  const hasCharacters = characters.length > 0;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +23,17 @@ function App() {
     <>
       <div className="page">
         <Header />
-        <main>Aqui van los resultados</main>
+        <main>
+          {hasCharacters ? (
+            <ul>
+              {characters.map((character) => (
+                <li key={character.id}>{character.name}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </main>
       </div>
     </>
   );
