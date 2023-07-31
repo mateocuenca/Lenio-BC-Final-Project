@@ -10,12 +10,13 @@ import { Main } from "./shared/layouts/Main/Main";
 import "./App.css";
 
 function App() {
-  const { fetchData } = useApp();
+  const { fetchInitialData, fetchCharactersLength } = useApp();
   const effectRan = useRef(false);
 
   useEffect(() => {
     if (effectRan.current === false) {
-      fetchData();
+      fetchInitialData();
+      fetchCharactersLength();
       return () => {
         effectRan.current = true;
       };

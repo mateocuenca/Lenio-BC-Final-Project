@@ -16,7 +16,7 @@ const Header = () => {
         <form>
           <input type="text" id="search" name="search" placeholder="Search" />
         </form>
-        <OutlineFavBtn onClick={} />
+        <OutlineFavBtn />
       </div>
     </header>
   );
