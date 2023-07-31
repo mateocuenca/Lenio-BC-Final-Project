@@ -1,10 +1,18 @@
 //External dependencies
-import { useAtom } from "jotai";
 import styles from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 //Internal dependencies
-import { charactersAtom } from "../../../shared/state/atoms/charactersAtoms";
 import { CharacterCard } from "./CharacterCard";
+import { useCharacterList } from "./useCharacterList";
+import { Spinner } from "../../../shared/components/atoms/Spinner";
+
+const InfiniteScrollContainer = styles.div`
+width:100%;
+text-align: center;
+margin: 0;
+padding:0;
+`;
 
 const Grid = styles.ul`
     list-style: none;
@@ -19,14 +27,27 @@ const Grid = styles.ul`
 `;
 
 const CharacterList = () => {
-  const [characters] = useAtom(charactersAtom);
-  return (
-    <Grid>
-      {characters.map((character) => (
-        <CharacterCard character={character} key={character.id} />
-      ))}
-    </Grid>
-  );
+  const { characters, charactersLength, fetchMoreData } = useCharacterList();
+
+  if (characters.length > 0) {
+    return (
+      <InfiniteScrollContainer>
+        <InfiniteScroll
+          dataLength={characters.length}
+          next={fetchMoreData}
+          hasMore={characters.length < charactersLength}
+          loader={<Spinner />}
+          endMessage={<h4>No more data to load</h4>}
+        >
+          <Grid>
+            {characters.map((character) => (
+              <CharacterCard character={character} key={character.id} />
+            ))}
+          </Grid>
+        </InfiniteScroll>
+      </InfiniteScrollContainer>
+    );
+  }
 };
 
 export default CharacterList;
