@@ -20,7 +20,7 @@ header div {
 
 /* Media queries  */
 
-@media (min-width: 768px) {
+@media (min-width: 825px) {
   /* Header styles */
   header {
     flex-direction: row;

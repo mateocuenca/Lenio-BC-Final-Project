@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 const Button = styled.button`
   background-color: white;
   border: none;
-  padding: 8px;
+  padding: 5px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -28,8 +28,8 @@ const Button = styled.button`
   }
 `;
 
-const OutlineFavBtn = ({ onClick }) => (
-  <Button onClick={onClick}>
+const OutlineFavBtn = ({ onClick, className }) => (
+  <Button onClick={onClick} className={className}>
     <AiOutlineStar />
   </Button>
 );
