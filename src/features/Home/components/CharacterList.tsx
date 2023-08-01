@@ -4,8 +4,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 //Internal dependencies
 import { CharacterCard } from "./CharacterCard";
-import { useCharacterList } from "./useCharacterList";
-import { Spinner } from "../../../shared/components/atoms/Spinner";
+import { useCharacterList } from "../hooks/useCharacterList";
+import { Spinner } from "../../../shared/components/Spinner";
 
 const InfiniteScrollContainer = styles.div`
 width:100%;
@@ -27,9 +27,16 @@ const Grid = styles.ul`
 `;
 
 const CharacterList = () => {
-  const { characters, charactersLength, fetchMoreData } = useCharacterList();
+  const { characters, search, charactersLength, fetchMoreData, successSearch } =
+    useCharacterList();
 
-  if (characters.length > 0) {
+  // If the search is not successful,show a "not found" message
+  if (successSearch == false) {
+    return <h4>Character not found</h4>;
+  }
+
+  // Show all characters if the search is empty
+  if (characters.length > 0 && search.length == 0) {
     return (
       <InfiniteScrollContainer>
         <InfiniteScroll
@@ -37,7 +44,7 @@ const CharacterList = () => {
           next={fetchMoreData}
           hasMore={characters.length < charactersLength}
           loader={<Spinner />}
-          endMessage={<h4>No more data to load</h4>}
+          endMessage={<h4>No more characters to load</h4>}
         >
           <Grid>
             {characters.map((character) => (
@@ -46,6 +53,17 @@ const CharacterList = () => {
           </Grid>
         </InfiniteScroll>
       </InfiniteScrollContainer>
+    );
+  }
+
+  // If the search is successful, show the results
+  else if (search.length > 0) {
+    return (
+      <Grid>
+        {search.map((character) => (
+          <CharacterCard character={character} key={character.id} />
+        ))}
+      </Grid>
     );
   }
 };

@@ -1,5 +1,6 @@
 //Internal dependencies
-import { OutlineFavBtn } from "../../components/atoms/OutlineFavBtn";
+import SearchBar from "../../../features/SearchBar/components/SearchBar";
+import { OutlineFavBtn } from "../../components/OutlineFavBtn";
 
 //Stylesheets
 import styles from "./Header.module.css";
@@ -13,9 +14,7 @@ const Header = () => {
         className={styles["logo-marvel"]}
       />
       <div>
-        <form>
-          <input type="text" id="search" name="search" placeholder="Search" />
-        </form>
+        <SearchBar />
         <OutlineFavBtn />
       </div>
     </header>
