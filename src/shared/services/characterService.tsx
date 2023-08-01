@@ -1,10 +1,20 @@
+// Internal dependencies
+import { ts, apikey, hash } from "../../config/constants/apiParams";
+
+// Define a global set to store used offsets
+let usedOffsetsSet = new Set();
+
+// Function to shuffle an array in-place using Fisher-Yates algorithm
+const shuffleArray = function (array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
 //Get the total number of characters
 const getCharactersLength = async () => {
-  const ts: string = "1";
-  const hash: string = "62e7d48094c147098933d40c09e39054";
-  const apikey: string = "68bad928443e1f6ff994342b06e6b887";
-  const limit: string = "1";
-
+  const limit = "20";
   const params = new URLSearchParams({
     ts,
     apikey,
@@ -20,22 +30,9 @@ const getCharactersLength = async () => {
   return response.data.total;
 };
 
-// Define a global set to store used offsets
-let usedOffsetsSet = new Set();
-
-// Function to shuffle an array in-place using Fisher-Yates algorithm
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
+//Get a list of 21 characters
 const getCharacters = async () => {
-  const ts: string = "1";
-  const hash: string = "62e7d48094c147098933d40c09e39054";
-  const apikey: string = "68bad928443e1f6ff994342b06e6b887";
-  const limit: string = "20";
+  const limit = "21";
   const total = await getCharactersLength(); // Fetch the total count of characters
 
   // Calculate the number of requests needed to fetch all characters
@@ -65,8 +62,6 @@ const getCharacters = async () => {
   });
 
   const URL = `https://gateway.marvel.com/v1/public/characters?${params.toString()}`;
-
-  console.log("fetching");
 
   const response = await fetch(URL)
     .then((response) => response.json())

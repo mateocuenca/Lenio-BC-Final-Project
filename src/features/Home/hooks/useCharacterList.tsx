@@ -6,16 +6,21 @@ import {
   charactersAtom,
   charactersLengthAtom,
 } from "../../../shared/state/atoms/charactersAtoms";
+import {
+  searchAtom,
+  successAtom,
+} from "../../../shared/state/atoms/searchAtom";
 import { getCharacters } from "../../../shared/services/characterService";
 
 const useCharacterList = () => {
   //Handling state
   const [characters, setNewCharacters] = useAtom(charactersAtom);
   const [charactersLength] = useAtom(charactersLengthAtom);
+  const [search] = useAtom(searchAtom);
+  const [successSearch] = useAtom(successAtom);
 
   //Fetching more characters
   const fetchMoreData = async () => {
-    console.log("fetching more data");
     const moreCharacters = await getCharacters();
     setNewCharacters((previousCharacters) => [
       ...previousCharacters,
@@ -23,7 +28,7 @@ const useCharacterList = () => {
     ]);
   };
 
-  return { characters, charactersLength, fetchMoreData };
+  return { characters, search, charactersLength, fetchMoreData, successSearch };
 };
 
 export { useCharacterList };
