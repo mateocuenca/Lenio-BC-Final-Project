@@ -1,7 +1,8 @@
 //External dependencies
 import { atom } from "jotai";
 
-const comicsAtom = atom<any[]>([]);
-const loadingComicsAtom = atom<boolean>(true);
+// const comicsAtom = atom<any[]>([]);
+// const loadingComicsAtom = atom<boolean>(true);
+const selectedComicAtom = atom<any>(null);
 
-export { comicsAtom, loadingComicsAtom };
+export { selectedComicAtom };

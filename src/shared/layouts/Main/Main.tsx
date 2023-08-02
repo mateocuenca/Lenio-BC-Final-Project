@@ -1,5 +1,5 @@
 //Internal dependencies
-import { HomePage } from "../../../features/Home/containers/HomePage";
+import { MainRoutes } from "../../routes/Routes";
 
 //Stylesheets
 import styles from "./Main.module.css";
@@ -7,7 +7,7 @@ import styles from "./Main.module.css";
 const Main = () => {
   return (
     <main className={styles.main}>
-      <HomePage />
+      <MainRoutes />
     </main>
   );
 };

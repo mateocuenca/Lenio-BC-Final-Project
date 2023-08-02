@@ -99,12 +99,7 @@ const CharacterModal = ({
         {emptyComics && <ModalDescription>No comics found</ModalDescription>}
         <ComicList>
           {comics.map((comic) => (
-            <ComicCart
-              key={comic.id}
-              title={comic.title}
-              thumbnail={comic.thumbnail}
-              description={comic.description}
-            />
+            <ComicCart key={comic.id} comic={comic} />
           ))}
         </ComicList>
       </div>

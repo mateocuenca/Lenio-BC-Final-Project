@@ -1,4 +1,9 @@
+//External dependencies
+import { useNavigate } from "react-router";
 import { styled } from "styled-components";
+
+//Internal dependencies
+import { useComicCart } from "../hooks/useComicCart";
 
 const Cart = styled.li`
   height: 200px;
@@ -9,6 +14,7 @@ const Cart = styled.li`
   border-radius: 5px;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
@@ -23,17 +29,19 @@ const ComicTitle = styled.h3`
   font-size: 1rem;
 `;
 
-const ComicDescription = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 0.8rem;
-`;
+const ComicCart = ({ comic }) => {
+  const navigate = useNavigate();
+  const { setComic } = useComicCart();
 
-const ComicCart = ({ title, thumbnail, description }) => {
+  const handleClick = () => {
+    setComic(comic);
+    navigate("/comics");
+  };
+
   return (
-    <Cart>
-      <Image src={thumbnail.path + "." + thumbnail.extension} />
-      <ComicTitle>{title}</ComicTitle>
+    <Cart onClick={handleClick}>
+      <Image src={comic.thumbnail.path + "." + comic.thumbnail.extension} />
+      <ComicTitle>{comic.title}</ComicTitle>
     </Cart>
   );
 };
