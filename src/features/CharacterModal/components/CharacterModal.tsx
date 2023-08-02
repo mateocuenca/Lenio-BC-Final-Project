@@ -74,6 +74,7 @@ const CloseModalBtn = styled.button`
 `;
 
 const CharacterModal = ({
+  characterId,
   isOpen,
   setIsOpen,
   comics,
@@ -90,7 +91,7 @@ const CharacterModal = ({
         <CloseModalBtn onClick={() => setIsOpen(false)}>
           <AiOutlineClose size={25} />
         </CloseModalBtn>
-        <ModalTitle>{characterName}</ModalTitle>
+        <ModalTitle>{characterName} </ModalTitle>
         {isLoading && (
           <SpinnerContainer>
             <Spinner />
@@ -99,7 +100,7 @@ const CharacterModal = ({
         {emptyComics && <ModalDescription>No comics found</ModalDescription>}
         <ComicList>
           {comics.map((comic) => (
-            <ComicCart key={comic.id} comic={comic} />
+            <ComicCart key={comic.id} comic={comic} characterId={characterId} />
           ))}
         </ComicList>
       </div>

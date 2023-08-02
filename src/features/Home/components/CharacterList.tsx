@@ -20,7 +20,7 @@ const Grid = styles.ul`
     width: 100%;
     margin:0;
     padding: 0;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 1rem;
     text-align: center;
  

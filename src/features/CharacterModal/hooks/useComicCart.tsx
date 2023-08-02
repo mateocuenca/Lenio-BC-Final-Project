@@ -1,14 +1,14 @@
 //External dependencies
-import { useAtom } from "jotai";
-
-//Internal dependencies
-import { selectedComicAtom } from "../../../shared/state/atoms/comicsAtoms";
+import { useNavigate } from "react-router";
 
 const useComicCart = () => {
-  //Handling state
-  const [, setComic] = useAtom(selectedComicAtom);
+  //Handling Click
+  const navigate = useNavigate();
+  const handleClick = (comic, characterId) => {
+    navigate(`/${comic.id}`);
+  };
 
-  return { setComic };
+  return { handleClick };
 };
 
 export { useComicCart };
