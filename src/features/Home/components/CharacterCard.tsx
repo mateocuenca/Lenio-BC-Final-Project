@@ -70,6 +70,7 @@ const CharacterCard = ({ character }) => {
       </CardContainer>
       <CardOutlineFavBtn />
       <CharacterModal
+        characterId={character.id}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         comics={comics}

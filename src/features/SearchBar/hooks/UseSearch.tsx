@@ -19,9 +19,8 @@ const useSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("query") || "");
 
-  const navigate = useNavigate();
-
   //Handling submit
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/?query=${query}`);

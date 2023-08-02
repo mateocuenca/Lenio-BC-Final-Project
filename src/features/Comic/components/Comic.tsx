@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import { useComic } from "../hooks/useComic";
 import { formatDate } from "../utils/formatDate";
 import { categorizeItemsByRole } from "../utils/rolesArray";
+import { useEffect } from "react";
+import { Spinner } from "../../../shared/components/Spinner";
 
 const FlexResponsiveContainer = styled.div`
   display: flex;
@@ -56,15 +58,23 @@ const Description = styled.p`
   margin: 0;
 `;
 
+const GoToComicLink = styled.a`
+  font-size: 1em;
+  margin: 0;
+  font-weight: bold;
+  padding-top: 1rem;
+`;
+
 const Comic = () => {
-  const { comic } = useComic();
+  const { fetchComicById, comic, comicData } = useComic();
 
-  const formattedDate = formatDate(comic.dates[0].date);
-  const { writers, pencillers, editors } = categorizeItemsByRole(
-    comic.creators.items
-  );
+  useEffect(() => {
+    fetchComicById();
+  }, []);
 
-  const isDescriptionEmpty = comic.description === null;
+  if (!comic || Object.keys(comicData).length === 0) {
+    return <Spinner />;
+  }
 
   return (
     <FlexResponsiveContainer>
@@ -75,14 +85,19 @@ const Comic = () => {
       <TextContainer>
         <Title>{comic.title}</Title>
         <DetailsContainer>
-          <DetailsItem>Published: {formattedDate}</DetailsItem>
-          <DetailsItem>Writer: {writers}</DetailsItem>
-          <DetailsItem>Penciller: {pencillers}</DetailsItem>
-          <DetailsItem>Editor: {editors}</DetailsItem>
+          <DetailsItem>Published: {comicData.formattedDate}</DetailsItem>
+          <DetailsItem>Writer: {comicData.writers}</DetailsItem>
+          <DetailsItem>Penciller: {comicData.pencillers}</DetailsItem>
+          <DetailsItem>Editor: {comicData.editors}</DetailsItem>
         </DetailsContainer>
         <Description>
-          {isDescriptionEmpty ? "No description available" : comic.description}
+          {comicData.isDescriptionEmpty
+            ? "No description available"
+            : comic.description}
         </Description>
+        <GoToComicLink href={comicData.comicURL} target="_blank">
+          Go to comic
+        </GoToComicLink>
       </TextContainer>
     </FlexResponsiveContainer>
   );
