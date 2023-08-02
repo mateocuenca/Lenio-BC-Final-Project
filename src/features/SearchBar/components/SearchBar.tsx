@@ -19,7 +19,7 @@ const SearchBar = () => {
         id="query"
         name="query"
         value={query}
-        placeholder="Search"
+        placeholder="Search character"
         onChange={handleChange}
       />
     </form>

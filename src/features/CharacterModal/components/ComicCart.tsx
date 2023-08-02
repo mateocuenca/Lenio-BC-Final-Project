@@ -40,7 +40,10 @@ const ComicCart = ({ comic }) => {
 
   return (
     <Cart onClick={handleClick}>
-      <Image src={comic.thumbnail.path + "." + comic.thumbnail.extension} />
+      <Image
+        src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+        alt={comic.title}
+      />
       <ComicTitle>{comic.title}</ComicTitle>
     </Cart>
   );

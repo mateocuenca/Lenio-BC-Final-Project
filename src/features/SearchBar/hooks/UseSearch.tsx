@@ -1,6 +1,7 @@
 // External dependencies
 import { useAtom } from "jotai";
 import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 //Internal dependencies
 import {
@@ -14,12 +15,16 @@ const useSearch = () => {
   const [, setSearch] = useAtom(searchAtom);
   const [, setSuccess] = useAtom(successAtom);
 
-  //Handling query state
-  const [query, setQuery] = useState("");
+  //Handling URL and Input query state
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("query") || "");
+
+  const navigate = useNavigate();
 
   //Handling submit
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate(`/?query=${query}`);
   };
 
   //Handling change
