@@ -2,7 +2,6 @@
 import styles from "styled-components";
 import { OutlineFavBtn } from "../../../shared/components/OutlineFavBtn";
 import CharacterModal from "../../CharacterModal/components/CharacterModal";
-import { useState } from "react";
 import { useCharacterCard } from "../hooks/useCharacterCard";
 
 const Card = styles.li`
