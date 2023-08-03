@@ -6,7 +6,7 @@ Marvel Searcher is a web application developed as the final project for the Leni
 
 ## Deployment
 
-[Click here](https://choosealicense.com/licenses/mit/) to go to the page.
+[Click here](https://lenio-bc-final-project-git-development-mateocuenca.vercel.app/) to go to the page.
 
 ## Technologies Used
 
