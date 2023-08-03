@@ -3,7 +3,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { styled } from "styled-components";
 
 const Button = styled.button`
-  background-color: white;
+  background-color: transparent;
   border: none;
   padding: 5px;
   cursor: pointer;
@@ -13,11 +13,11 @@ const Button = styled.button`
   margin: 0;
 
   &:hover {
-    background-color: white;
+    background-color: transparent;
   }
 
   &:focus {
-    background-color: white;
+    background-color: transparent;
     outline: none; /* Remove the default focus outline */
     box-shadow: none; /* Remove any box shadow on focus */
   }

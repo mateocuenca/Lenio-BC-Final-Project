@@ -51,12 +51,14 @@ const ModalTitle = styled.h2`
   margin-top: 2;
   padding: 0;
   text-align: center;
+  color: #000;
 `;
 
 const ModalSubheading = styled.h3`
   margin-bottom: 2;
   padding: 0;
   text-align: center;
+  color: #000;
 `;
 
 const ModalDescription = styled.p`
@@ -85,6 +87,7 @@ const CloseModalBtn = styled.button`
   right: 0;
   background-color: transparent;
   border: none;
+  color: #000;
   &:hover {
     background-color: transparent;
   }

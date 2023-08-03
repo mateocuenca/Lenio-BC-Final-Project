@@ -26,6 +26,7 @@ const ComicTitle = styled.h3`
   margin: 0;
   bottom: 0;
   font-size: 1rem;
+  color: #000;
 `;
 
 const ComicCart = ({ comic }: any) => {
