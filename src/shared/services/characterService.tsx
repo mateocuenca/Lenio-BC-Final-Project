@@ -5,7 +5,7 @@ import { ts, apikey, hash } from "../../config/constants/apiParams";
 let usedOffsetsSet = new Set();
 
 // Function to shuffle an array in-place using Fisher-Yates algorithm
-const shuffleArray = function (array) {
+const shuffleArray = function (array: any) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -32,7 +32,7 @@ const getCharactersLength = async () => {
 
 //Get a list of 21 characters
 const getCharacters = async () => {
-  const limit = "21";
+  const limit: any = "21";
   const total = await getCharactersLength(); // Fetch the total count of characters
 
   // Calculate the number of requests needed to fetch all characters
