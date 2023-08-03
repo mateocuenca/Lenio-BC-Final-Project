@@ -28,11 +28,11 @@ const ComicTitle = styled.h3`
   font-size: 1rem;
 `;
 
-const ComicCart = ({ comic, characterId }: any) => {
+const ComicCart = ({ comic }: any) => {
   const { handleClick } = useComicCart();
 
   return (
-    <Cart onClick={() => handleClick(comic, characterId)}>
+    <Cart onClick={() => handleClick(comic)}>
       <Image
         src={comic.thumbnail.path + "." + comic.thumbnail.extension}
         alt={comic.title}
