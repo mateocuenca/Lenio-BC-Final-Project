@@ -3,6 +3,7 @@ import styles from "styled-components";
 import { OutlineFavBtn } from "../../../shared/components/OutlineFavBtn";
 import CharacterModal from "../../CharacterModal/components/CharacterModal";
 import { useCharacterCard } from "../hooks/useCharacterCard";
+import { FillFavBtn } from "../../../shared/components/FillFavBtn";
 
 const Card = styles.li`
   position: relative;
@@ -46,6 +47,33 @@ right:0;
  color:white;
  border: none;
 
+ svg{
+    width: 30px;
+    height: 30px;
+ }
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
+
+`;
+
+const CardFillFavBtn = styles(FillFavBtn)`
+position: absolute;
+right:0;
+ background-color: transparent;
+ color:white;
+ border: none;
+
+ svg{
+    width: 30px;
+    height: 30px;
+ }
+
   &:hover {
     background-color: transparent;
   }
@@ -64,6 +92,7 @@ const CharacterCard = ({ character }: any) => {
     setIsOpen,
     isLoading,
     emptyComics,
+    isInFavourites,
     saveToFavourites,
   } = useCharacterCard();
 
@@ -76,10 +105,14 @@ const CharacterCard = ({ character }: any) => {
         />
         <CharacterTitle>{character.name}</CharacterTitle>
       </CardContainer>
-      <CardOutlineFavBtn
-        onClick={() => saveToFavourites(character)}
-        className
-      />
+      {isInFavourites(character) ? (
+        <CardFillFavBtn onClick={() => saveToFavourites(character)} className />
+      ) : (
+        <CardOutlineFavBtn
+          onClick={() => saveToFavourites(character)}
+          className
+        />
+      )}
       <CharacterModal
         characterId={character.id}
         isOpen={isOpen}
