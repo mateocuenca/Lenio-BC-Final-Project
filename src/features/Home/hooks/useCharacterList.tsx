@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import {
   charactersAtom,
   charactersLengthAtom,
+  favouriteCharactersAtom,
 } from "../../../shared/state/atoms/charactersAtoms";
 import {
   searchAtom,
@@ -18,6 +19,9 @@ const useCharacterList = () => {
   const [charactersLength] = useAtom(charactersLengthAtom);
   const [search] = useAtom(searchAtom);
   const [successSearch] = useAtom(successAtom);
+  const [favouriteCharacters, setFavouriteCharacters] = useAtom(
+    favouriteCharactersAtom
+  );
 
   //Fetching more characters
   const fetchMoreData = async () => {
@@ -28,7 +32,15 @@ const useCharacterList = () => {
     ]);
   };
 
-  return { characters, search, charactersLength, fetchMoreData, successSearch };
+  return {
+    characters,
+    search,
+    charactersLength,
+    fetchMoreData,
+    successSearch,
+    favouriteCharacters,
+    setFavouriteCharacters,
+  };
 };
 
 export { useCharacterList };

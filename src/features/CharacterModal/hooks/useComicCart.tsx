@@ -5,7 +5,7 @@ const useComicCart = () => {
   //Handling Click
   const navigate = useNavigate();
   const handleClick = (comic, characterId) => {
-    navigate(`/${comic.id}`);
+    navigate(`/comic/${comic.id}`);
   };
 
   return { handleClick };

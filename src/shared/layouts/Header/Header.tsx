@@ -15,6 +15,10 @@ const Header = () => {
     navigate("/");
   };
 
+  const goToFavorites = () => {
+    navigate("/favourites");
+  };
+
   return (
     <header>
       <img
@@ -25,7 +29,7 @@ const Header = () => {
       />
       <div>
         <SearchBar />
-        <OutlineFavBtn />
+        <OutlineFavBtn onClick={goToFavorites} />
       </div>
     </header>
   );
