@@ -6,6 +6,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { CharacterCard } from "./CharacterCard";
 import { useCharacterList } from "../hooks/useCharacterList";
 import { Spinner } from "../../../shared/components/Spinner";
+import { useParams } from "react-router";
+import { useEffect } from "react";
 
 const InfiniteScrollContainer = styles.div`
 width:100%;
@@ -29,6 +31,27 @@ const Grid = styles.ul`
 const CharacterList = () => {
   const { characters, search, charactersLength, fetchMoreData, successSearch } =
     useCharacterList();
+
+  // Get the favourites parameter from the URL
+  const params = useParams();
+  const favourites = params.favourites;
+
+  // Get the favourite characters from the local storage and store it in global state
+  const favouriteCharactersLocal =
+    JSON.parse(localStorage.getItem("favouriteCharacters")) || [];
+
+  // If the user is in the favourites page, show the favourite characters
+  if (favourites == "favourites") {
+    return favouriteCharactersLocal.length == 0 ? (
+      <h4>No favourite characters</h4>
+    ) : (
+      <Grid>
+        {favouriteCharactersLocal.map((character) => (
+          <CharacterCard character={character} key={character.id} />
+        ))}
+      </Grid>
+    );
+  }
 
   // If the search is not successful,show a "not found" message
   if (successSearch == false) {

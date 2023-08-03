@@ -3,6 +3,8 @@ import styles from "styled-components";
 import { OutlineFavBtn } from "../../../shared/components/OutlineFavBtn";
 import CharacterModal from "../../CharacterModal/components/CharacterModal";
 import { useCharacterCard } from "../hooks/useCharacterCard";
+import { FillFavBtn } from "../../../shared/components/FillFavBtn";
+import { useEffect } from "react";
 
 const Card = styles.li`
   position: relative;
@@ -55,10 +57,34 @@ right:0;
   }
 
 `;
+const CardFillFavBtn = styles(FillFavBtn)`
+position: absolute;
+right:0;
+ background-color: transparent;
+ color:white;
+ border: none;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    background-color: transparent;
+  }
+
+`;
 
 const CharacterCard = ({ character }) => {
-  const { comics, openModal, isOpen, setIsOpen, isLoading, emptyComics } =
-    useCharacterCard();
+  const {
+    comics,
+    openModal,
+    isOpen,
+    setIsOpen,
+    isLoading,
+    emptyComics,
+    saveToFavourites,
+  } = useCharacterCard();
+
   return (
     <Card>
       <CardContainer onClick={() => openModal(character.id)}>
@@ -68,7 +94,7 @@ const CharacterCard = ({ character }) => {
         />
         <CharacterTitle>{character.name}</CharacterTitle>
       </CardContainer>
-      <CardOutlineFavBtn />
+      <CardOutlineFavBtn onClick={() => saveToFavourites(character)} />
       <CharacterModal
         characterId={character.id}
         isOpen={isOpen}

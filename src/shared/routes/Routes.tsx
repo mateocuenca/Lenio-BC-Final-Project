@@ -8,7 +8,8 @@ import { Comic } from "../../features/Comic/components/Comic";
 const MainRoutes = () => (
   <Routes>
     <Route path="/" element={<HomePage />} />
-    <Route path="/:comicId" element={<Comic />} />
+    <Route path="/:favourites" element={<HomePage />} />
+    <Route path="/comic/:comicId" element={<Comic />} />
   </Routes>
 );
 
