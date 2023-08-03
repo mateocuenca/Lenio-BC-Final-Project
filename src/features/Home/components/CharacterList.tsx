@@ -7,7 +7,6 @@ import { CharacterCard } from "./CharacterCard";
 import { useCharacterList } from "../hooks/useCharacterList";
 import { Spinner } from "../../../shared/components/Spinner";
 import { useParams } from "react-router";
-import { useEffect } from "react";
 
 const InfiniteScrollContainer = styles.div`
 width:100%;
@@ -35,6 +34,10 @@ const CharacterList = () => {
   // Get the favourites parameter from the URL
   const params = useParams();
   const favourites = params.favourites;
+
+  // Create local storage for favourite characters if it doesn't exist
+  if (!localStorage.getItem("favouriteCharacters"))
+    localStorage.setItem("favouriteCharacters", JSON.stringify([]));
 
   // Get the favourite characters from the local storage and store it in global state
   const favouriteCharactersLocal =

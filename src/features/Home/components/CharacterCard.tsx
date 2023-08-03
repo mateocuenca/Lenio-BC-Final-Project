@@ -103,6 +103,7 @@ const CharacterCard = ({ character }) => {
         characterName={character.name}
         isLoading={isLoading}
         emptyComics={emptyComics}
+        description={character.description}
       />
     </Card>
   );
