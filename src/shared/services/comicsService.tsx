@@ -2,7 +2,7 @@
 import { ts, apikey, hash } from "../../config/constants/apiParams";
 
 // Get all comics for a character
-const getComics = async (characterId) => {
+const getComics = async (characterId: any) => {
   const params = new URLSearchParams({
     ts,
     apikey,
@@ -18,7 +18,7 @@ const getComics = async (characterId) => {
 };
 
 // Get a single comic by id
-const getComicById = async (comicId) => {
+const getComicById = async (comicId: any) => {
   const params = new URLSearchParams({
     ts,
     apikey,
