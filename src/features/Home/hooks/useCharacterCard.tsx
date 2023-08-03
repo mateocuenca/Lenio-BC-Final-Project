@@ -11,11 +11,9 @@ const useCharacterCard = () => {
   const [comics, setComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [emptyComics, setEmptyComics] = useState(false);
-  const [favouriteCharacters, setFavouriteCharacters] = useAtom(
-    favouriteCharactersAtom
-  );
+  const [, setFavouriteCharacters] = useAtom(favouriteCharactersAtom);
 
-  const openModal = async (characterId) => {
+  const openModal = async (characterId: any) => {
     setIsOpen(true);
     const comics = await getComics(characterId);
     setComics(comics);
@@ -23,30 +21,30 @@ const useCharacterCard = () => {
     setIsLoading(false);
   };
 
-  const saveToFavourites = (character) => {
+  const saveToFavourites = (character: any) => {
     //Check if character is already in local storage favourites
-    const localFavourites = JSON.parse(
-      localStorage.getItem("favouriteCharacters")
-    );
+    const localFavourites = localStorage.getItem("favouriteCharacters");
+    const localFavouritesString = localFavourites || "[]";
+    const localFavouritesParsed = JSON.parse(localFavouritesString);
 
-    const isCharacterInLocalStorage = localFavourites.find(
-      (favouriteCharacter) => favouriteCharacter.id === character.id
+    const isCharacterInLocalStorage = localFavouritesParsed.find(
+      (favouriteCharacter: any) => favouriteCharacter.id === character.id
     );
 
     const isCharacterInLocalStorageFound = !!isCharacterInLocalStorage;
 
     //If character is not in local storage favourites, add it
     if (!isCharacterInLocalStorageFound) {
-      localFavourites.push(character);
+      localFavouritesParsed.push(character);
       localStorage.setItem(
         "favouriteCharacters",
-        JSON.stringify(localFavourites)
+        JSON.stringify(localFavouritesParsed)
       );
-      setFavouriteCharacters(localFavourites);
+      setFavouriteCharacters(localFavouritesParsed);
       //If character is in local storage favourites, remove it
     } else {
-      const newLocalFavourites = localFavourites.filter(
-        (favouriteCharacter) => favouriteCharacter.id !== character.id
+      const newLocalFavourites = localFavouritesParsed.filter(
+        (favouriteCharacter: any) => favouriteCharacter.id !== character.id
       );
       localStorage.setItem(
         "favouriteCharacters",

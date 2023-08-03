@@ -39,17 +39,19 @@ const CharacterList = () => {
   if (!localStorage.getItem("favouriteCharacters"))
     localStorage.setItem("favouriteCharacters", JSON.stringify([]));
 
-  // Get the favourite characters from the local storage and store it in global state
-  const favouriteCharactersLocal =
-    JSON.parse(localStorage.getItem("favouriteCharacters")) || [];
+  // Get the favourite characters from the local storage
+
+  const localFavourites = localStorage.getItem("favouriteCharacters");
+  const localFavouritesString = localFavourites || "[]";
+  const localFavouritesParsed = JSON.parse(localFavouritesString);
 
   // If the user is in the favourites page, show the favourite characters
   if (favourites == "favourites") {
-    return favouriteCharactersLocal.length == 0 ? (
+    return localFavouritesParsed.length == 0 ? (
       <h4>No favourite characters</h4>
     ) : (
       <Grid>
-        {favouriteCharactersLocal.map((character) => (
+        {localFavouritesParsed.map((character: any) => (
           <CharacterCard character={character} key={character.id} />
         ))}
       </Grid>
