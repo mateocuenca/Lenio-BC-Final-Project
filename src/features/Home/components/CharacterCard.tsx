@@ -3,8 +3,6 @@ import styles from "styled-components";
 import { OutlineFavBtn } from "../../../shared/components/OutlineFavBtn";
 import CharacterModal from "../../CharacterModal/components/CharacterModal";
 import { useCharacterCard } from "../hooks/useCharacterCard";
-import { FillFavBtn } from "../../../shared/components/FillFavBtn";
-import { useEffect } from "react";
 
 const Card = styles.li`
   position: relative;
@@ -57,24 +55,8 @@ right:0;
   }
 
 `;
-const CardFillFavBtn = styles(FillFavBtn)`
-position: absolute;
-right:0;
- background-color: transparent;
- color:white;
- border: none;
 
-  &:hover {
-    background-color: transparent;
-  }
-
-  &:focus {
-    background-color: transparent;
-  }
-
-`;
-
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character }: any) => {
   const {
     comics,
     openModal,
@@ -94,7 +76,10 @@ const CharacterCard = ({ character }) => {
         />
         <CharacterTitle>{character.name}</CharacterTitle>
       </CardContainer>
-      <CardOutlineFavBtn onClick={() => saveToFavourites(character)} />
+      <CardOutlineFavBtn
+        onClick={() => saveToFavourites(character)}
+        className
+      />
       <CharacterModal
         characterId={character.id}
         isOpen={isOpen}

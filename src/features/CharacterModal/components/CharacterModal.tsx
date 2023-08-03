@@ -99,7 +99,7 @@ const CharacterModal = ({
   isLoading,
   emptyComics,
   description,
-}) => {
+}: any) => {
   if (!isOpen) return null;
 
   return ReactDom.createPortal(
@@ -123,13 +123,13 @@ const CharacterModal = ({
 
         {emptyComics && <ModalError>No comics found</ModalError>}
         <ComicList>
-          {comics.map((comic) => (
+          {comics.map((comic: any) => (
             <ComicCart key={comic.id} comic={comic} characterId={characterId} />
           ))}
         </ComicList>
       </Modal>
     </>,
-    document.getElementById("portal")
+    document.getElementById("portal") as HTMLElement
   );
 };
 

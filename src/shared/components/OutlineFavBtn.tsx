@@ -28,7 +28,7 @@ const Button = styled.button`
   }
 `;
 
-const OutlineFavBtn = ({ onClick, className }) => (
+const OutlineFavBtn = ({ onClick, className }: any) => (
   <Button onClick={onClick} className={className}>
     <AiOutlineStar />
   </Button>
