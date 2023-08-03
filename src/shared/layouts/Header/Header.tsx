@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router";
 
 //Internal dependencies
+import Logo from "../../../assets/marvel-logo.svg";
 import SearchBar from "../../../features/SearchBar/components/SearchBar";
 import { OutlineFavBtn } from "../../components/OutlineFavBtn";
 
@@ -22,7 +23,7 @@ const Header = () => {
   return (
     <header>
       <img
-        src="src/assets/marvel-logo.svg"
+        src={Logo}
         alt="Marvel Logo"
         className={styles["logo-marvel"]}
         onClick={handleClick}
