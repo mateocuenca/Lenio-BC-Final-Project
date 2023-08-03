@@ -4,13 +4,18 @@
 
 Marvel Searcher is a web application developed as the final project for the Lenio Bootcamp. It serves as a comprehensive tool for searching Marvel characters, providing information about their associated comics. Additionally, the app allows users to save their favorite characters for easy access.
 
+## Deployment
+
+[Click here](https://choosealicense.com/licenses/mit/) to go to the page.
+
 ## Technologies Used
 
 - React
 - Typescript
 - Jotai
 - Styled Components
-- Jest
+- React Infinite Scroll
+- Lodash
 
 ## Contributing
 
