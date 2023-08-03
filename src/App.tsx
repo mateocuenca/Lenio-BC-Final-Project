@@ -11,12 +11,8 @@ import "./App.css";
 
 function App() {
   const { fetchInitialData, fetchCharactersLength } = useApp();
+
   const effectRan = useRef(false);
-
-  // Create local storage for favourite characters if it doesn't exist
-
-  if (!localStorage.getItem("favouriteCharacters"))
-    localStorage.setItem("favouriteCharacters", JSON.stringify([]));
 
   useEffect(() => {
     if (effectRan.current === false) {

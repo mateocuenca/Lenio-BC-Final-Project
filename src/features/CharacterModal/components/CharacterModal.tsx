@@ -5,32 +5,36 @@ import ReactDom from "react-dom";
 import { ComicCart } from "./ComicCart";
 import { styled } from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
-import { useEscapeKey } from "../hooks/useEscapeKey";
 import { Spinner } from "../../../shared/components/Spinner";
 
-const MODAL_STYLES = {
-  position: "fixed",
-  top: "50%",
-  left: "50%",
-  height: "400px",
-  width: "300px",
-  transform: "translate(-50%, -50%)",
-  backgroundColor: "#FFF",
-  padding: "30px",
-  zIndex: 1000,
-  overflow: "scroll",
-  borderRadius: "5px",
-};
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+`;
 
-const OVERLAY_STYLES = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: "rgba(0,0,0, .7)",
-  zIndex: 1000,
-};
+const Modal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 400px;
+  width: 300px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  overflow: scroll;
+  borderradius: 5px;
+
+  @media (min-width: 752px) {
+    width: 400px;
+    height: 530px;
+  }
+
+  &:;
+`;
 
 const ComicList = styled.ul`
   list-style: none;
@@ -44,16 +48,29 @@ const ComicList = styled.ul`
 `;
 
 const ModalTitle = styled.h2`
-  margin: 0;
-  padding: 2rem;
+  margin-top: 2;
+  padding: 0;
+  text-align: center;
+`;
+
+const ModalSubheading = styled.h3`
+  margin-bottom: 2;
+  padding: 0;
   text-align: center;
 `;
 
 const ModalDescription = styled.p`
-  margin: 0;
+  margin-bottom: 2;
   padding: 0;
   text-align: center;
-  color: var(--red-marvel);
+  color: #000;
+`;
+
+const ModalError = styled.p`
+  margin-bottom: 2;
+  padding: 0;
+  text-align: center;
+  color: red;
 `;
 
 const SpinnerContainer = styled.div`
@@ -81,29 +98,36 @@ const CharacterModal = ({
   characterName,
   isLoading,
   emptyComics,
+  description,
 }) => {
   if (!isOpen) return null;
 
   return ReactDom.createPortal(
     <>
-      <div style={OVERLAY_STYLES} />
-      <div style={MODAL_STYLES}>
+      <Overlay />
+      <Modal>
         <CloseModalBtn onClick={() => setIsOpen(false)}>
           <AiOutlineClose size={25} />
         </CloseModalBtn>
         <ModalTitle>{characterName} </ModalTitle>
+        <ModalSubheading>Character description</ModalSubheading>
+        <ModalDescription>
+          {description ? description : "No description found"}
+        </ModalDescription>
+        <ModalSubheading>Comics</ModalSubheading>
         {isLoading && (
           <SpinnerContainer>
             <Spinner />
           </SpinnerContainer>
         )}
-        {emptyComics && <ModalDescription>No comics found</ModalDescription>}
+
+        {emptyComics && <ModalError>No comics found</ModalError>}
         <ComicList>
           {comics.map((comic) => (
             <ComicCart key={comic.id} comic={comic} characterId={characterId} />
           ))}
         </ComicList>
-      </div>
+      </Modal>
     </>,
     document.getElementById("portal")
   );

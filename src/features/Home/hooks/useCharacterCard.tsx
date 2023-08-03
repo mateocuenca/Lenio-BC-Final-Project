@@ -2,7 +2,7 @@
 import { useAtom } from "jotai";
 
 // Internal dependencies
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getComics } from "../../../shared/services/comicsService";
 import { favouriteCharactersAtom } from "../../../shared/state/atoms/charactersAtoms";
 
@@ -55,33 +55,6 @@ const useCharacterCard = () => {
       );
       setFavouriteCharacters(newLocalFavourites);
     }
-
-    /* //Check if character is already in favourites
-    const isCharacterInFavourites = favouriteCharacters.find(
-      (favouriteCharacter) => favouriteCharacter.id === character.id
-    );
-
-    const isCharacterFound = !!isCharacterInFavourites;
-
-    console.log("isCharacterFound", isCharacterFound);
-
-    //If character is not in favourites, add it
-    if (!isCharacterFound) {
-      setFavouriteCharacters((previousFavourites) => [
-        ...previousFavourites,
-        character,
-      ]);
-      console.log("favourites", favouriteCharacters);
-    }
-
-    //If character is in favourites, remove it
-    else {
-      setFavouriteCharacters((previousFavourites) =>
-        previousFavourites.filter(
-          (favouriteCharacter) => favouriteCharacter.id !== character.id
-        )
-      );
-    } */
   };
 
   return {
