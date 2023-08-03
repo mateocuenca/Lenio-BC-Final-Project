@@ -1,10 +1,8 @@
 // Internal dependencies
 import { styled } from "styled-components";
 import { useComic } from "../hooks/useComic";
-import { formatDate } from "../utils/formatDate";
-import { categorizeItemsByRole } from "../utils/rolesArray";
-import { useEffect } from "react";
 import { Spinner } from "../../../shared/components/Spinner";
+import { useEffect } from "react";
 
 const FlexResponsiveContainer = styled.div`
   display: flex;
@@ -66,7 +64,7 @@ const GoToComicLink = styled.a`
 `;
 
 const Comic = () => {
-  const { fetchComicById, comic, comicData } = useComic();
+  const { fetchComicById, comic, comicData }: any = useComic();
 
   useEffect(() => {
     fetchComicById();

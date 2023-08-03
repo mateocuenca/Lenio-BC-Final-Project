@@ -94,6 +94,9 @@ const CharacterList = () => {
       </Grid>
     );
   }
+
+  // Add a default return statement to return null if none of the conditions are met
+  return null;
 };
 
 export default CharacterList;
