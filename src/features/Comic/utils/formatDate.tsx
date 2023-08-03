@@ -13,7 +13,7 @@ const monthNames = [
   "December",
 ];
 
-const formatDate = (date) => {
+const formatDate = (date: any) => {
   const dateObj = new Date(date);
 
   const day = dateObj.getDate();

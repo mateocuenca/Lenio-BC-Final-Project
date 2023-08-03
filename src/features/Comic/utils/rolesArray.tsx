@@ -1,7 +1,7 @@
 // Function to categorize items into roles
-const categorizeItemsByRole = (items) => {
+const categorizeItemsByRole = (items: any) => {
   return items.reduce(
-    (result, item) => {
+    (result: any, item: any) => {
       switch (item.role) {
         case "writer":
           result.writers.push(item.name);

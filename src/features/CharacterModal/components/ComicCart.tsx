@@ -1,5 +1,4 @@
 //External dependencies
-import { useNavigate } from "react-router";
 import { styled } from "styled-components";
 
 //Internal dependencies
@@ -29,7 +28,7 @@ const ComicTitle = styled.h3`
   font-size: 1rem;
 `;
 
-const ComicCart = ({ comic, characterId }) => {
+const ComicCart = ({ comic, characterId }: any) => {
   const { handleClick } = useComicCart();
 
   return (

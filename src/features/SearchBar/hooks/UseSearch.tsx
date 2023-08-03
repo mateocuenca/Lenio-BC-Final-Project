@@ -16,23 +16,23 @@ const useSearch = () => {
   const [, setSuccess] = useAtom(successAtom);
 
   //Handling URL and Input query state
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("query") || "");
 
   //Handling submit
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     navigate(`/?query=${query}`);
   };
 
   //Handling change
-  const handleChange = async (e) => {
+  const handleChange = async (e: any) => {
     const value = e.target.value;
     setQuery(value);
   };
 
-  const fetchSearch = async (query) => {
+  const fetchSearch = async (query: any) => {
     if (query === "") {
       setSearch([]);
       setSuccess(true);
