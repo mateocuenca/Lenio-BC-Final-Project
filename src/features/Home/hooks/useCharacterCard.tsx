@@ -12,6 +12,9 @@ const useCharacterCard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [emptyComics, setEmptyComics] = useState(false);
   const [, setFavouriteCharacters] = useAtom(favouriteCharactersAtom);
+  const localFavourites = localStorage.getItem("favouriteCharacters");
+  const localFavouritesString = localFavourites || "[]";
+  const localFavouritesParsed = JSON.parse(localFavouritesString);
 
   const openModal = async (characterId: any) => {
     setIsOpen(true);
@@ -21,16 +24,20 @@ const useCharacterCard = () => {
     setIsLoading(false);
   };
 
+  const isInFavourites = (character: any) => {
+    const isCharacterInLocalStorage = localFavouritesParsed.find(
+      (favouriteCharacter: any) => favouriteCharacter.id === character.id
+    );
+    const isCharacterInLocalStorageFound = !!isCharacterInLocalStorage;
+    return isCharacterInLocalStorageFound;
+  };
+
   const saveToFavourites = (character: any) => {
     //Check if character is already in local storage favourites
-    const localFavourites = localStorage.getItem("favouriteCharacters");
-    const localFavouritesString = localFavourites || "[]";
-    const localFavouritesParsed = JSON.parse(localFavouritesString);
 
     const isCharacterInLocalStorage = localFavouritesParsed.find(
       (favouriteCharacter: any) => favouriteCharacter.id === character.id
     );
-
     const isCharacterInLocalStorageFound = !!isCharacterInLocalStorage;
 
     //If character is not in local storage favourites, add it
@@ -62,6 +69,7 @@ const useCharacterCard = () => {
     setIsOpen,
     isLoading,
     emptyComics,
+    isInFavourites,
     saveToFavourites,
   };
 };
