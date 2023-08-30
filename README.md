@@ -8,6 +8,10 @@ Marvel Searcher is a web application developed as the final project for the Leni
 
 [Click here](https://lenio-bc-final-project-git-development-mateocuenca.vercel.app/) to go to the page.
 
+## Installation
+
+nvm use (checks in .nvmrc)
+
 ## Technologies Used
 
 - React
